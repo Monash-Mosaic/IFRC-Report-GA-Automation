@@ -1,0 +1,24 @@
+{
+  "name": "ifrc-report-ga-automation",
+  "version": "1.0.0",
+  "description": "Automation for IFRC report GA analytics and email",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Monash-Mosaic/IFRC-Report-GA-Automation.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Monash-Mosaic/IFRC-Report-GA-Automation/issues"
+  },
+  "homepage": "https://github.com/Monash-Mosaic/IFRC-Report-GA-Automation#readme",
+  "devDependencies": {
+    "@google/clasp": "^3.4.1"
+  }
+}

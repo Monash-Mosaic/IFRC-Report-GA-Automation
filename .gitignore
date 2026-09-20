@@ -1,0 +1,9 @@
+node_modules/
+.DS_Store
+
+.clasprc.json
+.clasp.json
+
+.env
+.env.*
+*.log
