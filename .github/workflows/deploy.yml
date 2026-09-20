@@ -1,0 +1,79 @@
+name: Deploy Project CMS
+
+on:
+  workflow_dispatch:
+    inputs:
+      description:
+        description: "Deployment description"
+        required: false
+        default: "Manual GitHub deployment"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: project-cms-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Deploy Apps Script
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Configure clasp
+        shell: bash
+        run: |
+          printf '%s' '${{ secrets.CLASPRC_JSON }}' > "$HOME/.clasprc.json"
+          printf '%s' '${{ secrets.CLASP_JSON }}' > .clasp.json
+
+      - name: Verify clasp authentication
+        run: npx @google/clasp show-authorized-user
+
+      - name: Show current Apps Script status
+        run: npx @google/clasp show-file-status
+
+      - name: Push source to Apps Script
+        run: npx @google/clasp push --force
+
+      - name: Create Apps Script version
+        id: version
+        shell: bash
+        run: |
+          OUTPUT=$(npx @google/clasp create-version "${{ inputs.description }} - $GITHUB_SHA")
+
+          echo "$OUTPUT"
+
+          VERSION=$(echo "$OUTPUT" | grep -oE '[0-9]+' | tail -1)
+
+          if [ -z "$VERSION" ]; then
+            echo "Could not determine Apps Script version."
+            exit 1
+          fi
+
+          echo "Created Apps Script version: $VERSION"
+
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Update production deployment
+        shell: bash
+        run: |
+          npx @google/clasp update-deployment \
+            "${{ secrets.APPS_SCRIPT_DEPLOYMENT_ID }}" \
+            --versionNumber "${{ steps.version.outputs.version }}" \
+            --description "${{ inputs.description }} - GitHub $GITHUB_SHA"
+
+      - name: Show deployments
+        run: npx @google/clasp list-deployments
