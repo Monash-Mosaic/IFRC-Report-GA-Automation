@@ -1,9 +1,21 @@
+# Dependencies
 node_modules/
-.DS_Store
 
+# clasp credentials/config
 .clasprc.json
 .clasp.json
 
+# Environment files
 .env
 .env.*
+!.env.example
+
+# macOS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
 *.log
