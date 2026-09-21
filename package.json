@@ -4,6 +4,7 @@
   "description": "Automation for IFRC report GA analytics and email",
   "main": "index.js",
   "scripts": {
+    "local": "node local/runner.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,6 +20,7 @@
   },
   "homepage": "https://github.com/Monash-Mosaic/IFRC-Report-GA-Automation#readme",
   "devDependencies": {
-    "@google/clasp": "^3.4.1"
+    "@google/clasp": "^3.4.1",
+    "dotenv": "^18.0.1"
   }
 }

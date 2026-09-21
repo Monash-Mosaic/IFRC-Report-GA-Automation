@@ -3,3 +3,8 @@
 !**/*.gs
 !**/*.js
 !**/*.html
+
+# Node-only local infrastructure must never be pushed to Apps Script.
+# Safety net if clasp is run without rootDir set to src/.
+local/
+node_modules/
