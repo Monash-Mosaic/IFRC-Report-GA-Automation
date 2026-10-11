@@ -8,20 +8,19 @@
 
 function ga4RunReport() {
   return {
-    dimensionHeaders: [{ name: 'date' }, { name: 'sessionDefaultChannelGroup' }],
+    dimensionHeaders: [{ name: 'sessionSourceMedium' }],
     metricHeaders: [
-      { name: 'sessions', type: 'TYPE_INTEGER' },
       { name: 'activeUsers', type: 'TYPE_INTEGER' },
-      { name: 'screenPageViews', type: 'TYPE_INTEGER' },
+      { name: 'conversions', type: 'TYPE_FLOAT' },
     ],
     rows: [
       {
-        dimensionValues: [{ value: '20260901' }, { value: 'Organic Search' }],
-        metricValues: [{ value: '120' }, { value: '80' }, { value: '340' }],
+        dimensionValues: [{ value: 'google / organic' }],
+        metricValues: [{ value: '80' }, { value: '12' }],
       },
       {
-        dimensionValues: [{ value: '20260902' }, { value: 'Direct' }],
-        metricValues: [{ value: '95' }, { value: '70' }, { value: '210' }],
+        dimensionValues: [{ value: '(direct) / (none)' }],
+        metricValues: [{ value: '70' }, { value: '8' }],
       },
     ],
     rowCount: 2,
