@@ -2,21 +2,58 @@
  * Build the GA4 report request used for the monthly report.
  */
 function buildGA4Request() {
-  return {
-    dateRanges: [
-      {
-        startDate: '30daysAgo',
-        endDate: 'today'
-      }
-    ],
-    dimensions: [
-      { name: 'sessionSourceMedium' }
-    ],
-    metrics: [
-      { name: 'activeUsers' },
-      { name: 'conversions' }
-    ]
-  };
+  const dateRanges = [
+    { name: 'current', startDate: '30daysAgo', endDate: 'yesterday' },
+    { name: 'previous', startDate: '60daysAgo', endDate: '31daysAgo' },
+  ];
+  return [
+    // Metrics by Page Title
+    {
+      dateRanges,
+      dimensions: [{ name: 'pageTitle' }],
+      metrics: [
+        { name: 'screenPageViews' },
+        { name: 'activeUsers' },
+        { name: 'sessions' },
+        { name: 'userEngagementDuration' },
+      ],
+      metricAggregations: ['TOTAL'],
+      orderBys: [{ metric: { metricName: 'screenPageViews' }, desc: true }],
+      limit: 100,
+    },
+    // Metrics by Country
+    {
+      dateRanges,
+      dimensions: [{ name: 'country' }],
+      metrics: [
+        { name: 'screenPageViews' }, 
+        { name: 'activeUsers' },
+        { name: 'userEngagementDuration' }
+      ],
+      orderBys: [{ metric: { metricName: 'screenPageViews' }, desc: true }],
+      limit: 100,
+    },
+    // Download and share count
+    {
+      dateRanges,
+      dimensions: [{ name: 'eventName' }],
+      metrics: [{ name: 'eventCount' }],
+      dimensionFilter: {
+        filter: { fieldName: 'eventName', inListFilter: { values: ['file_download', 'share'] } },
+      },
+    },
+    // Downloaded files
+    {
+      dateRanges,
+      dimensions: [{ name: 'fileName' }],
+      metrics: [{ name: 'eventCount' }],
+      dimensionFilter: {
+        filter: { fieldName: 'eventName', stringFilter: { matchType: 'EXACT', value: 'file_download' } },
+      },
+      orderBys: [{ metric: { metricName: 'eventCount' }, desc: true }],
+      limit: 100,
+    },
+  ];
 }
 
 /**
@@ -27,7 +64,7 @@ function fetchGA4Metrics(config) {
     throw new Error('GA4 configuration requires propertyId');
   }
 
-  const response = AnalyticsData.Properties.runReport(
+  const response = AnalyticsData.Properties.batchRunReports(
     buildGA4Request(),
     'properties/' + config.propertyId
   );
