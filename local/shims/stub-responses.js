@@ -1,39 +1,32 @@
 'use strict';
 
+const fs = require('fs');
+const path = require('path');
+
 /**
  * Canned payloads for local shims.
- * These are structurally similar to real GA4 / Gemini responses so future
- * src/ code can parse them locally. They are not live API data.
+ * These responses are loaded from local dummy data and are not live API data.
  */
 
-function ga4RunReport() {
-  return {
-    dimensionHeaders: [{ name: 'sessionSourceMedium' }],
-    metricHeaders: [
-      { name: 'activeUsers', type: 'TYPE_INTEGER' },
-      { name: 'conversions', type: 'TYPE_FLOAT' },
-    ],
-    rows: [
-      {
-        dimensionValues: [{ value: 'google / organic' }],
-        metricValues: [{ value: '80' }, { value: '12' }],
-      },
-      {
-        dimensionValues: [{ value: '(direct) / (none)' }],
-        metricValues: [{ value: '70' }, { value: '8' }],
-      },
-    ],
-    rowCount: 2,
-    metadata: {
-      currencyCode: 'AUD',
-      timeZone: 'Australia/Melbourne',
-    },
-    kind: 'analyticsData#runReport',
-  };
+/** Load a JSON fixture from the local dummy-data directory. */
+function loadDummyResponse(filename) {
+  const filePath = path.resolve(__dirname, '..', 'dummyData', filename);
+  return JSON.parse(fs.readFileSync(filePath, 'utf8'));
 }
 
+/** Return the expected readable report fixture for local tests. */
+function expectedSummary() {
+  return loadDummyResponse('expectedSummary.json');
+}
+
+/** Return the metrics-by-page GA4 fixture for a single report. */
+function ga4RunReport() {
+  return loadDummyResponse('metrics-by-page.json');
+}
+
+/** Return the monthly-overview GA4 fixture for a batch report. */
 function ga4BatchRunReports() {
-  return { reports: [ga4RunReport()] };
+  return loadDummyResponse('monthly-overview.json');
 }
 
 function geminiGenerateContent() {
@@ -63,4 +56,5 @@ module.exports = {
   ga4RunReport,
   ga4BatchRunReports,
   geminiGenerateContent,
+  expectedSummary,
 };

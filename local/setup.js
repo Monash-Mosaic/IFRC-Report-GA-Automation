@@ -12,6 +12,7 @@ const { installUtilities } = require('./shims/utilities');
 const { installSession } = require('./shims/session');
 const { installHtmlService } = require('./shims/html-service');
 const { installMimeType } = require('./shims/mime-type');
+const { expectedSummary } = require('./shims/stub-responses');
 
 /**
  * Install local-only Apps Script compatibility shims onto a global object.
@@ -38,6 +39,7 @@ function setupLocalEnvironment(globalTarget = globalThis) {
   installSession(globalTarget);
   installHtmlService(globalTarget);
   installMimeType(globalTarget);
+  globalTarget.expectedSummary = expectedSummary;
 }
 
 module.exports = { setupLocalEnvironment };

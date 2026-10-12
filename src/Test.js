@@ -140,116 +140,40 @@ function testConfig() {
 
 /** Test the GA4 functionality. */
 function testGA4() {
-    const request = buildGA4Request();
+    const requests = buildGA4Request();
 
     // The request should have the expected shape for the GA4 report.
+    assertEqual(requests.length, 4, 'GA4 should request four reports');
     assertEqual(
-        request.dateRanges[0].startDate,
-        '30daysAgo',
-        'GA4 start date should cover the previous 30 days'
+        requests[0].dimensions[0].name,
+        'pageTitle',
+        'First report should use pageTitle'
     );
     assertEqual(
-        request.dateRanges[0].endDate,
-        'today',
-        'GA4 end date should be today'
+        requests[1].dimensions[0].name,
+        'country',
+        'Second report should use country'
     );
     assertEqual(
-        request.dimensions[0].name,
-        'sessionSourceMedium',
-        'GA4 dimension should be sessionSourceMedium'
+        requests[2].dimensions[0].name,
+        'eventName',
+        'Third report should use eventName'
     );
     assertEqual(
-        request.metrics[0].name,
-        'activeUsers',
-        'GA4 first metric should be activeUsers'
-    );
-    assertEqual(
-        request.metrics[1].name,
-        'conversions',
-        'GA4 second metric should be conversions'
+        requests[3].dimensions[0].name,
+        'fileName',
+        'Fourth report should use fileName'
     );
 
-    const config = { propertyId: '123456789' };
-    const metrics = fetchGA4Metrics(config);
-
-    // The metrics should be mapped from the GA4 response to an array of objects with source, activeUsers, and conversions.
-    assertEqual(metrics.length, 2, 'GA4 fixture row count should be mapped');
+    const response = fetchGA4Metrics({ propertyId: '123456789' });
+    assertEqual(response.reports.length, 4, 'GA4 batch should contain four reports');
     assertEqual(
-        metrics[0].source,
-        'google / organic',
-        'GA4 source should be mapped'
-    );
-    assertEqual(metrics[0].activeUsers, 80, 'Active users should be numeric');
-    assertEqual(metrics[0].conversions, 12, 'Conversions should be numeric');
-
-    assertEqual(
-        mapGA4Response({ rows: [] }).length,
-        0,
-        'An empty GA4 response should produce no metrics'
-    );
-
-    assertEqual(
-        mapGA4Response({ rows: undefined }).length,
-        0,
-        'A GA4 response without rows should produce no metrics'
+        response.reports[0].rows.length,
+        14,
+        'Page report fixture rows should be returned unchanged'
     );
 
     // Test that invalid GA4 responses throw errors.
-    assertThrows(
-        function () {
-            mapGA4Response({ rows: 'invalid' });
-        },
-        'GA4 response rows must be an array',
-        'Non-array GA4 rows should fail'
-    );
-
-    // Test that GA4 API errors are handled correctly.
-    assertThrows(
-        function () {
-            mapGA4Response({
-                error: { code: 403, message: 'Permission denied' }
-            });
-        },
-        'GA4 response contained an API error',
-        'GA4 API errors should fail'
-    );
-
-    // Test that missing dimensions or metrics in GA4 rows throw errors.
-    assertThrows(
-        function () {
-            mapGA4Response({
-                dimensionHeaders: [{ name: 'sessionSourceMedium' }],
-                metricHeaders: [
-                    { name: 'activeUsers' },
-                    { name: 'conversions' }
-                ],
-                rows: [{ dimensionValues: [], metricValues: [] }]
-            });
-        },
-        'GA4 row 0 is missing dimension: sessionSourceMedium',
-        'Missing GA4 dimensions should fail'
-    );
-
-    // Test that invalid metric values in GA4 rows throw errors.
-    assertThrows(
-        function () {
-            mapGA4Response({
-                dimensionHeaders: [{ name: 'sessionSourceMedium' }],
-                metricHeaders: [
-                    { name: 'activeUsers' },
-                    { name: 'conversions' }
-                ],
-                rows: [{
-                    dimensionValues: [{ value: 'google / organic' }],
-                    metricValues: [{ value: 'not-a-number' }, { value: '12' }]
-                }]
-            });
-        },
-        'GA4 row 0 has an invalid metric: activeUsers',
-        'Invalid GA4 metrics should fail'
-    );
-
-    // Test that missing GA4 configuration throws an error.
     assertThrows(
         function () {
             fetchGA4Metrics({});
@@ -258,131 +182,56 @@ function testGA4() {
         'Missing GA4 configuration should fail'
     );
 
+    assertThrows(
+        function () {
+            validateGA4Response({ reports: 'invalid' });
+        },
+        'GA4 batch response reports must be an array',
+        'Invalid GA4 batch responses should fail'
+    );
+    assertThrows(
+        function () {
+            validateGA4Response({ reports: [{ rows: 'invalid' }] });
+        },
+        'GA4 report 0 rows must be an array',
+        'Invalid GA4 report rows should fail'
+    );
+    assertThrows(
+        function () {
+            validateGA4Response({
+                error: { code: 403, message: 'Permission denied' }
+            });
+        },
+        'GA4 response contained an API error',
+        'GA4 API errors should fail'
+    );
+
     Logger.log('testGA4 passed');
 }
 
-/** Test deterministic report calculations. */
+/** Test the readable report against the expected local fixture. */
 function testReport() {
-    const metrics = [
-        {
-            source: 'newsletter',
-            activeUsers: 25,
-            conversions: 4
-        },
-        {
-            source: 'google / organic',
-            activeUsers: 80,
-            conversions: 12
-        },
-        {
-            source: '(direct) / (none)',
-            activeUsers: 70,
-            conversions: 8
-        }
-    ];
-
-    assertTrue(
-        validateMetrics(metrics),
-        'Valid metrics should pass validation'
-    );
-
-    const summary = summarizeMetrics(metrics);
-
-    assertTrue(summary.hasData, 'A non-empty report should have data');
-    assertEqual(
-        summary.totalActiveUsers,
-        175,
-        'Total active users should be calculated'
+    const summary = summarizeMetrics(
+        fetchGA4Metrics({ propertyId: '123456789' })
     );
     assertEqual(
-        summary.totalConversions,
-        24,
-        'Total conversions should be calculated'
+        JSON.stringify(summary),
+        JSON.stringify(expectedSummary()),
+        'Readable report should match expected summary fixture'
     );
-    assertEqual(
-        summary.sourcesByActiveUsers[0].source,
-        'google / organic',
-        'Sources should be ranked by active users'
-    );
-    assertEqual(
-        summary.sourcesByActiveUsers[1].source,
-        '(direct) / (none)',
-        'Second source should be ranked correctly'
-    );
-    assertEqual(
-        summary.sourcesByActiveUsers.length,
-        3,
-        'All source rows should be retained'
-    );
-
-    const tied = sortSources([
-        { source: 'first', activeUsers: 10, conversions: 1 },
-        { source: 'second', activeUsers: 10, conversions: 2 }
-    ]);
-    assertEqual(
-        tied[0].source,
-        'first',
-        'Tied sources should preserve their input order'
-    );
-
-    const emptySummary = summarizeMetrics([]);
-    assertEqual(
-        emptySummary.hasData,
-        false,
-        'An empty report should be marked as having no data'
-    );
-    assertEqual(
-        emptySummary.totalActiveUsers,
-        0,
-        'Empty reports should have zero active users'
-    );
-    assertEqual(
-        emptySummary.totalConversions,
-        0,
-        'Empty reports should have zero conversions'
-    );
-    assertEqual(
-        emptySummary.sourcesByActiveUsers.length,
-        0,
-        'Empty reports should have no sources'
-    );
-
     assertThrows(
         function() {
-            validateMetrics(null);
+            summarizeMetrics(null);
         },
-        'Metrics must be an array',
-        'Non-array metrics should fail validation'
+        'GA4 report data must contain a reports array',
+        'Missing report data should fail'
     );
-
     assertThrows(
         function() {
-            validateMetrics([
-                { activeUsers: 10, conversions: 1 }
-            ]);
+            summarizeMetrics({ reports: [] });
         },
-        'Metric row 0 is missing source',
-        'Metrics without a source should fail validation'
-    );
-
-    assertThrows(
-        function() {
-            validateMetrics([
-                { source: 'source', activeUsers: '10', conversions: 1 }
-            ]);
-        },
-        'Metric row 0 has an invalid activeUsers value',
-        'Non-numeric active users should fail validation'
-    );
-
-    assertThrows(
-        function() {
-            validateMetrics([
-                { source: 'source', activeUsers: 10, conversions: NaN }
-            ]);
-        },
-        'Metric row 0 has an invalid conversions value',
-        'Invalid conversions should fail validation'
+        'GA4 report data must contain four reports',
+        'An incomplete batch should fail'
     );
 
     Logger.log('testReport passed');
@@ -748,7 +597,7 @@ function testAutomation() {
 
     AnalyticsData = {
         Properties: {
-            runReport: function() {
+            batchRunReports: function() {
                 throw new Error('Simulated GA4 failure');
             }
         }

@@ -3,8 +3,8 @@
  */
 function buildGA4Request() {
   const dateRanges = [
-    { name: 'current', startDate: '30daysAgo', endDate: 'yesterday' },
-    { name: 'previous', startDate: '60daysAgo', endDate: '31daysAgo' },
+    { name: 'current', startDate: '28daysAgo', endDate: 'yesterday' },
+    { name: 'previous', startDate: '56daysAgo', endDate: '29daysAgo' },
   ];
   return [
     // Metrics by Page Title
@@ -69,11 +69,11 @@ function fetchGA4Metrics(config) {
     'properties/' + config.propertyId
   );
 
-  return mapGA4Response(response);
+  return validateGA4Response(response);
 }
 
-/** Map the GA4 response to [{ source, activeUsers, conversions }] */
-function mapGA4Response(response) {
+/** Validate and return the raw GA4 batch response for report mapping. */
+function validateGA4Response(response) {
   if (!response || typeof response !== 'object') {
     throw new Error('GA4 response was empty or invalid');
   }
@@ -82,96 +82,18 @@ function mapGA4Response(response) {
     throw new Error('GA4 response contained an API error');
   }
 
-  if (response.rows == null) {
-    return [];
+  if (!Array.isArray(response.reports)) {
+    throw new Error('GA4 batch response reports must be an array');
   }
 
-  if (!Array.isArray(response.rows)) {
-    throw new Error('GA4 response rows must be an array');
-  }
-
-  const dimensionIndexes = indexHeaders(response.dimensionHeaders);
-  const metricIndexes = indexHeaders(response.metricHeaders);
-
-  return response.rows.map(function(row, rowIndex) {
-    if (!row || !Array.isArray(row.dimensionValues) ||
-        !Array.isArray(row.metricValues)) {
-      throw new Error('GA4 row ' + rowIndex + ' has an invalid shape');
-    }
-
-    const source = getRowValue(
-      row.dimensionValues,
-      dimensionIndexes.sessionSourceMedium,
-      'sessionSourceMedium',
-      rowIndex
-    );
-    const activeUsers = getNumericRowValue(
-      row.metricValues,
-      metricIndexes.activeUsers,
-      'activeUsers',
-      rowIndex
-    );
-    const conversions = getNumericRowValue(
-      row.metricValues,
-      metricIndexes.conversions,
-      'conversions',
-      rowIndex
-    );
-
-    return {
-      source: source,
-      activeUsers: activeUsers,
-      conversions: conversions
-    };
-  });
-}
-
-/** Index the headers by name for efficient lookup. */
-function indexHeaders(headers) {
-  const indexes = {};
-
-  if (!Array.isArray(headers)) {
-    return indexes;
-  }
-
-  headers.forEach(function(header, index) {
-    if (header && typeof header.name === 'string') {
-      indexes[header.name] = index;
+  response.reports.forEach(function(report, reportIndex) {
+    if (!report || typeof report !== 'object' ||
+        !Array.isArray(report.rows)) {
+      throw new Error(
+        'GA4 report ' + reportIndex + ' rows must be an array'
+      );
     }
   });
 
-  return indexes;
-}
-
-/** Get the value of a row at the specified index. */
-function getRowValue(values, index, name, rowIndex) {
-  if (index == null || !values[index] ||
-      values[index].value == null ||
-      String(values[index].value).trim() === '') {
-    throw new Error(
-      'GA4 row ' + rowIndex + ' is missing dimension: ' + name
-    );
-  }
-
-  return String(values[index].value);
-}
-
-/** Get the numeric value of a row at the specified index. */
-function getNumericRowValue(values, index, name, rowIndex) {
-  if (index == null || !values[index] || values[index].value == null ||
-      String(values[index].value).trim() === '') {
-    throw new Error(
-      'GA4 row ' + rowIndex + ' is missing metric: ' + name
-    );
-  }
-
-  const value = Number(values[index].value);
-
-  if (!Number.isFinite(value)) {
-    throw new Error(
-      'GA4 row ' + rowIndex + ' has an invalid metric: ' + name
-    );
-  }
-
-  return value;
+  return response;
 }

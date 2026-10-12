@@ -4,8 +4,8 @@ function generateMonthlySummary() {
 
   try {
     config = getConfig();
-    const metrics = fetchGA4Metrics(config);
-    const reportData = summarizeMetrics(metrics);
+    const ga4Response = fetchGA4Metrics(config);
+    const reportData = summarizeMetrics(ga4Response);
     const prompt = buildSummaryPrompt(reportData);
     const summary = callGemini(prompt, config);
 
