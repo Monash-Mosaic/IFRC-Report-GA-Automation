@@ -1,0 +1,827 @@
+{
+  "reports": [
+    {
+      "dimensionHeaders": [
+        {
+          "name": "pageTitle"
+        },
+        {
+          "name": "dateRange"
+        }
+      ],
+      "metricHeaders": [
+        {
+          "name": "screenPageViews",
+          "type": "TYPE_INTEGER"
+        },
+        {
+          "name": "activeUsers",
+          "type": "TYPE_INTEGER"
+        },
+        {
+          "name": "sessions",
+          "type": "TYPE_INTEGER"
+        },
+        {
+          "name": "userEngagementDuration",
+          "type": "TYPE_SECONDS"
+        }
+      ],
+      "rows": [
+        {
+          "dimensionValues": [
+            {
+              "value": "IFRC Reports Homepage | IFRC"
+            },
+            {
+              "value": "previous"
+            }
+          ],
+          "metricValues": [
+            {
+              "value": "40"
+            },
+            {
+              "value": "20"
+            },
+            {
+              "value": "25"
+            },
+            {
+              "value": "315"
+            }
+          ]
+        },
+        {
+          "dimensionValues": [
+            {
+              "value": "World Disasters Report 2026 | IFRC"
+            },
+            {
+              "value": "previous"
+            }
+          ],
+          "metricValues": [
+            {
+              "value": "20"
+            },
+            {
+              "value": "15"
+            },
+            {
+              "value": "15"
+            },
+            {
+              "value": "130"
+            }
+          ]
+        },
+        {
+          "dimensionValues": [
+            {
+              "value": "About Us | IFRC"
+            },
+            {
+              "value": "previous"
+            }
+          ],
+          "metricValues": [
+            {
+              "value": "10"
+            },
+            {
+              "value": "10"
+            },
+            {
+              "value": "10"
+            },
+            {
+              "value": "40"
+            }
+          ]
+        },
+        {
+          "dimensionValues": [
+            {
+              "value": "Acknowledgements and Contributors | IFRC"
+            },
+            {
+              "value": "previous"
+            }
+          ],
+          "metricValues": [
+            {
+              "value": "10"
+            },
+            {
+              "value": "10"
+            },
+            {
+              "value": "10"
+            },
+            {
+              "value": "75"
+            }
+          ]
+        },
+        {
+          "dimensionValues": [
+            {
+              "value": "IFRC Reports Homepage | IFRC"
+            },
+            {
+              "value": "current"
+            }
+          ],
+          "metricValues": [
+            {
+              "value": "200"
+            },
+            {
+              "value": "100"
+            },
+            {
+              "value": "100"
+            },
+            {
+              "value": "300"
+            }
+          ]
+        },
+        {
+          "dimensionValues": [
+            {
+              "value": "World Disasters Report 2026 > Chapter 01 | IFRC"
+            },
+            {
+              "value": "previous"
+            }
+          ],
+          "metricValues": [
+            {
+              "value": "10"
+            },
+            {
+              "value": "5"
+            },
+            {
+              "value": "5"
+            },
+            {
+              "value": "10"
+            }
+          ]
+        },
+        {
+          "dimensionValues": [
+            {
+              "value": "World Disasters Report 2026 > Synthesis | IFRC"
+            },
+            {
+              "value": "previous"
+            }
+          ],
+          "metricValues": [
+            {
+              "value": "10"
+            },
+            {
+              "value": "10"
+            },
+            {
+              "value": "10"
+            },
+            {
+              "value": "55"
+            }
+          ]
+        },
+        {
+          "dimensionValues": [
+            {
+              "value": "Discover | IFRC"
+            },
+            {
+              "value": "previous"
+            }
+          ],
+          "metricValues": [
+            {
+              "value": "5"
+            },
+            {
+              "value": "5"
+            },
+            {
+              "value": "5"
+            },
+            {
+              "value": "15"
+            }
+          ]
+        },
+        {
+          "dimensionValues": [
+            {
+              "value": "World Disasters Report 2026 > Chapter 01 | IFRC"
+            },
+            {
+              "value": "current"
+            }
+          ],
+          "metricValues": [
+            {
+              "value": "100"
+            },
+            {
+              "value": "100"
+            },
+            {
+              "value": "100"
+            },
+            {
+              "value": "600"
+            }
+          ]
+        },
+        {
+          "dimensionValues": [
+            {
+              "value": "World Disasters Report 2026 | IFRC"
+            },
+            {
+              "value": "current"
+            }
+          ],
+          "metricValues": [
+            {
+              "value": "100"
+            },
+            {
+              "value": "100"
+            },
+            {
+              "value": "100"
+            },
+            {
+              "value": "500"
+            }
+          ]
+        },
+        {
+          "dimensionValues": [
+            {
+              "value": "About Us | IFRC"
+            },
+            {
+              "value": "current"
+            }
+          ],
+          "metricValues": [
+            {
+              "value": "0"
+            },
+            {
+              "value": "0"
+            },
+            {
+              "value": "0"
+            },
+            {
+              "value": "0"
+            }
+          ]
+        },
+        {
+          "dimensionValues": [
+            {
+              "value": "Acknowledgements and Contributors | IFRC"
+            },
+            {
+              "value": "current"
+            }
+          ],
+          "metricValues": [
+            {
+              "value": "0"
+            },
+            {
+              "value": "0"
+            },
+            {
+              "value": "0"
+            },
+            {
+              "value": "0"
+            }
+          ]
+        },
+        {
+          "dimensionValues": [
+            {
+              "value": "Discover | IFRC"
+            },
+            {
+              "value": "current"
+            }
+          ],
+          "metricValues": [
+            {
+              "value": "0"
+            },
+            {
+              "value": "0"
+            },
+            {
+              "value": "0"
+            },
+            {
+              "value": "0"
+            }
+          ]
+        },
+        {
+          "dimensionValues": [
+            {
+              "value": "World Disasters Report 2026 > Synthesis | IFRC"
+            },
+            {
+              "value": "current"
+            }
+          ],
+          "metricValues": [
+            {
+              "value": "0"
+            },
+            {
+              "value": "0"
+            },
+            {
+              "value": "0"
+            },
+            {
+              "value": "0"
+            }
+          ]
+        }
+      ],
+      "totals": [
+        {
+          "dimensionValues": [
+            {
+              "value": "RESERVED_TOTAL"
+            },
+            {
+              "value": "current"
+            }
+          ],
+          "metricValues": [
+            {
+              "value": "400"
+            },
+            {
+              "value": "300"
+            },
+            {
+              "value": "300"
+            },
+            {
+              "value": "1400"
+            }
+          ]
+        },
+        {
+          "dimensionValues": [
+            {
+              "value": "RESERVED_TOTAL"
+            },
+            {
+              "value": "previous"
+            }
+          ],
+          "metricValues": [
+            {
+              "value": "105"
+            },
+            {
+              "value": "75"
+            },
+            {
+              "value": "80"
+            },
+            {
+              "value": "640"
+            }
+          ]
+        }
+      ],
+      "rowCount": 7,
+      "metadata": {
+        "currencyCode": "AUD",
+        "timeZone": "Australia/Melbourne"
+      },
+      "kind": "analyticsData#runReport"
+    },
+    {
+      "dimensionHeaders": [
+        {
+          "name": "country"
+        },
+        {
+          "name": "dateRange"
+        }
+      ],
+      "metricHeaders": [
+        {
+          "name": "screenPageViews",
+          "type": "TYPE_INTEGER"
+        },
+        {
+          "name": "activeUsers",
+          "type": "TYPE_INTEGER"
+        },
+        {
+          "name": "userEngagementDuration",
+          "type": "TYPE_SECONDS"
+        }
+      ],
+      "rows": [
+        {
+          "dimensionValues": [
+            {
+              "value": "Australia"
+            },
+            {
+              "value": "previous"
+            }
+          ],
+          "metricValues": [
+            {
+              "value": "74"
+            },
+            {
+              "value": "53"
+            },
+            {
+              "value": "448"
+            }
+          ]
+        },
+        {
+          "dimensionValues": [
+            {
+              "value": "New Zealand"
+            },
+            {
+              "value": "previous"
+            }
+          ],
+          "metricValues": [
+            {
+              "value": "31"
+            },
+            {
+              "value": "22"
+            },
+            {
+              "value": "192"
+            }
+          ]
+        },
+        {
+          "dimensionValues": [
+            {
+              "value": "Australia"
+            },
+            {
+              "value": "current"
+            }
+          ],
+          "metricValues": [
+            {
+              "value": "60"
+            },
+            {
+              "value": "50"
+            },
+            {
+              "value": "300"
+            }
+          ]
+        },
+        {
+          "dimensionValues": [
+            {
+              "value": "New Zealand"
+            },
+            {
+              "value": "current"
+            }
+          ],
+          "metricValues": [
+            {
+              "value": "340"
+            },
+            {
+              "value": "250"
+            },
+            {
+              "value": "1100"
+            }
+          ]
+        }
+      ],
+      "rowCount": 4,
+      "metadata": {
+        "currencyCode": "AUD",
+        "timeZone": "Australia/Melbourne"
+      },
+      "kind": "analyticsData#runReport"
+    },
+    {
+      "dimensionHeaders": [
+        {
+          "name": "eventName"
+        },
+        {
+          "name": "dateRange"
+        }
+      ],
+      "metricHeaders": [
+        {
+          "name": "eventCount",
+          "type": "TYPE_INTEGER"
+        }
+      ],
+      "rows": [
+        {
+          "dimensionValues": [
+            {
+              "value": "file_download"
+            },
+            {
+              "value": "previous"
+            }
+          ],
+          "metricValues": [
+            {
+              "value": "30"
+            }
+          ]
+        },
+        {
+          "dimensionValues": [
+            {
+              "value": "file_download"
+            },
+            {
+              "value": "current"
+            }
+          ],
+          "metricValues": [
+            {
+              "value": "120"
+            }
+          ]
+        },
+        {
+          "dimensionValues": [
+            {
+              "value": "share"
+            },
+            {
+              "value": "current"
+            }
+          ],
+          "metricValues": [
+            {
+              "value": "120"
+            }
+          ]
+        },
+        {
+          "dimensionValues": [
+            {
+              "value": "share"
+            },
+            {
+              "value": "previous"
+            }
+          ],
+          "metricValues": [
+            {
+              "value": "5"
+            }
+          ]
+        }
+      ],
+      "rowCount": 2,
+      "metadata": {
+        "currencyCode": "AUD",
+        "timeZone": "Australia/Melbourne"
+      },
+      "kind": "analyticsData#runReport"
+    },
+    {
+      "dimensionHeaders": [
+        {
+          "name": "fileName"
+        },
+        {
+          "name": "dateRange"
+        }
+      ],
+      "metricHeaders": [
+        {
+          "name": "eventCount",
+          "type": "TYPE_INTEGER"
+        }
+      ],
+      "rows": [
+        {
+          "dimensionValues": [
+            {
+              "value": ""
+            },
+            {
+              "value": "previous"
+            }
+          ],
+          "metricValues": [
+            {
+              "value": "15"
+            }
+          ]
+        },
+        {
+          "dimensionValues": [
+            {
+              "value": "/sites/default/files/2026-02/WDR2026_FullReport_EN.pdf"
+            },
+            {
+              "value": "previous"
+            }
+          ],
+          "metricValues": [
+            {
+              "value": "15"
+            }
+          ]
+        },
+        {
+          "dimensionValues": [
+            {
+              "value": ""
+            },
+            {
+              "value": "current"
+            }
+          ],
+          "metricValues": [
+            {
+              "value": "75"
+            }
+          ]
+        },
+        {
+          "dimensionValues": [
+            {
+              "value": "/sites/default/files/2026-02/WDR2026_FullReport_EN.pdf"
+            },
+            {
+              "value": "current"
+            }
+          ],
+          "metricValues": [
+            {
+              "value": "75"
+            }
+          ]
+        }
+      ],
+      "rowCount": 2,
+      "metadata": {
+        "currencyCode": "AUD",
+        "timeZone": "Australia/Melbourne"
+      },
+      "kind": "analyticsData#runReport"
+    },
+    {
+      "dimensionHeaders": [
+        {
+          "name": "sessionSourceMedium"
+        },
+        {
+          "name": "dateRange"
+        }
+      ],
+      "metricHeaders": [
+        {
+          "name": "sessions",
+          "type": "TYPE_INTEGER"
+        },
+        {
+          "name": "activeUsers",
+          "type": "TYPE_INTEGER"
+        },
+        {
+          "name": "userEngagementDuration",
+          "type": "TYPE_SECONDS"
+        }
+      ],
+      "rows": [
+        {
+          "dimensionValues": [
+            {
+              "value": "(direct) / (none)"
+            },
+            {
+              "value": "previous"
+            }
+          ],
+          "metricValues": [
+            {
+              "value": "30"
+            },
+            {
+              "value": "32"
+            },
+            {
+              "value": "256"
+            }
+          ]
+        },
+        {
+          "dimensionValues": [
+            {
+              "value": "google / organic"
+            },
+            {
+              "value": "previous"
+            }
+          ],
+          "metricValues": [
+            {
+              "value": "45"
+            },
+            {
+              "value": "48"
+            },
+            {
+              "value": "384"
+            }
+          ]
+        },
+        {
+          "dimensionValues": [
+            {
+              "value": "(direct) / (none)"
+            },
+            {
+              "value": "current"
+            }
+          ],
+          "metricValues": [
+            {
+              "value": "120"
+            },
+            {
+              "value": "120"
+            },
+            {
+              "value": "560"
+            }
+          ]
+        },
+        {
+          "dimensionValues": [
+            {
+              "value": "google / organic"
+            },
+            {
+              "value": "current"
+            }
+          ],
+          "metricValues": [
+            {
+              "value": "180"
+            },
+            {
+              "value": "180"
+            },
+            {
+              "value": "840"
+            }
+          ]
+        }
+      ],
+      "rowCount": 4,
+      "metadata": {
+        "currencyCode": "AUD",
+        "timeZone": "Australia/Melbourne"
+      },
+      "kind": "analyticsData#runReport"
+    }
+  ],
+  "kind": "analyticsData#batchRunReports"
+}

@@ -1,0 +1,237 @@
+{
+  "hasData": true,
+  "pagePerformanceTotals": [
+    {
+      "period": "current",
+      "pageViews": 400,
+      "activeUsers": 300,
+      "sessions": 300,
+      "engagementTimeSeconds": 1400
+    },
+    {
+      "period": "previous",
+      "pageViews": 105,
+      "activeUsers": 75,
+      "sessions": 80,
+      "engagementTimeSeconds": 640
+    }
+  ],
+  "pagePerformance": [
+    {
+      "pageTitle": "IFRC Reports Homepage | IFRC",
+      "period": "previous",
+      "pageViews": 40,
+      "activeUsers": 20,
+      "sessions": 25,
+      "engagementTimeSeconds": 315
+    },
+    {
+      "pageTitle": "World Disasters Report 2026 | IFRC",
+      "period": "previous",
+      "pageViews": 20,
+      "activeUsers": 15,
+      "sessions": 15,
+      "engagementTimeSeconds": 130
+    },
+    {
+      "pageTitle": "About Us | IFRC",
+      "period": "previous",
+      "pageViews": 10,
+      "activeUsers": 10,
+      "sessions": 10,
+      "engagementTimeSeconds": 40
+    },
+    {
+      "pageTitle": "Acknowledgements and Contributors | IFRC",
+      "period": "previous",
+      "pageViews": 10,
+      "activeUsers": 10,
+      "sessions": 10,
+      "engagementTimeSeconds": 75
+    },
+    {
+      "pageTitle": "IFRC Reports Homepage | IFRC",
+      "period": "current",
+      "pageViews": 200,
+      "activeUsers": 100,
+      "sessions": 100,
+      "engagementTimeSeconds": 300
+    },
+    {
+      "pageTitle": "World Disasters Report 2026 > Chapter 01 | IFRC",
+      "period": "previous",
+      "pageViews": 10,
+      "activeUsers": 5,
+      "sessions": 5,
+      "engagementTimeSeconds": 10
+    },
+    {
+      "pageTitle": "World Disasters Report 2026 > Synthesis | IFRC",
+      "period": "previous",
+      "pageViews": 10,
+      "activeUsers": 10,
+      "sessions": 10,
+      "engagementTimeSeconds": 55
+    },
+    {
+      "pageTitle": "Discover | IFRC",
+      "period": "previous",
+      "pageViews": 5,
+      "activeUsers": 5,
+      "sessions": 5,
+      "engagementTimeSeconds": 15
+    },
+    {
+      "pageTitle": "World Disasters Report 2026 > Chapter 01 | IFRC",
+      "period": "current",
+      "pageViews": 100,
+      "activeUsers": 100,
+      "sessions": 100,
+      "engagementTimeSeconds": 600
+    },
+    {
+      "pageTitle": "World Disasters Report 2026 | IFRC",
+      "period": "current",
+      "pageViews": 100,
+      "activeUsers": 100,
+      "sessions": 100,
+      "engagementTimeSeconds": 500
+    },
+    {
+      "pageTitle": "About Us | IFRC",
+      "period": "current",
+      "pageViews": 0,
+      "activeUsers": 0,
+      "sessions": 0,
+      "engagementTimeSeconds": 0
+    },
+    {
+      "pageTitle": "Acknowledgements and Contributors | IFRC",
+      "period": "current",
+      "pageViews": 0,
+      "activeUsers": 0,
+      "sessions": 0,
+      "engagementTimeSeconds": 0
+    },
+    {
+      "pageTitle": "Discover | IFRC",
+      "period": "current",
+      "pageViews": 0,
+      "activeUsers": 0,
+      "sessions": 0,
+      "engagementTimeSeconds": 0
+    },
+    {
+      "pageTitle": "World Disasters Report 2026 > Synthesis | IFRC",
+      "period": "current",
+      "pageViews": 0,
+      "activeUsers": 0,
+      "sessions": 0,
+      "engagementTimeSeconds": 0
+    }
+  ],
+  "countryPerformance": [
+    {
+      "country": "Australia",
+      "period": "previous",
+      "pageViews": 74,
+      "activeUsers": 53,
+      "engagementTimeSeconds": 448
+    },
+    {
+      "country": "New Zealand",
+      "period": "previous",
+      "pageViews": 31,
+      "activeUsers": 22,
+      "engagementTimeSeconds": 192
+    },
+    {
+      "country": "Australia",
+      "period": "current",
+      "pageViews": 60,
+      "activeUsers": 50,
+      "engagementTimeSeconds": 300
+    },
+    {
+      "country": "New Zealand",
+      "period": "current",
+      "pageViews": 340,
+      "activeUsers": 250,
+      "engagementTimeSeconds": 1100
+    }
+  ],
+  "engagementEvents": [
+    {
+      "eventName": "file_download",
+      "period": "previous",
+      "eventCount": 30
+    },
+    {
+      "eventName": "file_download",
+      "period": "current",
+      "eventCount": 120
+    },
+    {
+      "eventName": "share",
+      "period": "current",
+      "eventCount": 120
+    },
+    {
+      "eventName": "share",
+      "period": "previous",
+      "eventCount": 5
+    }
+  ],
+  "downloadedFiles": [
+    {
+      "fileName": "Unknown file",
+      "period": "previous",
+      "downloadCount": 15
+    },
+    {
+      "fileName": "/sites/default/files/2026-02/WDR2026_FullReport_EN.pdf",
+      "period": "previous",
+      "downloadCount": 15
+    },
+    {
+      "fileName": "Unknown file",
+      "period": "current",
+      "downloadCount": 75
+    },
+    {
+      "fileName": "/sites/default/files/2026-02/WDR2026_FullReport_EN.pdf",
+      "period": "current",
+      "downloadCount": 75
+    }
+  ],
+  "trafficSources": [
+    {
+      "sourceMedium": "(direct) / (none)",
+      "period": "previous",
+      "sessions": 30,
+      "activeUsers": 32,
+      "engagementTimeSeconds": 256
+    },
+    {
+      "sourceMedium": "google / organic",
+      "period": "previous",
+      "sessions": 45,
+      "activeUsers": 48,
+      "engagementTimeSeconds": 384
+    },
+    {
+      "sourceMedium": "(direct) / (none)",
+      "period": "current",
+      "sessions": 120,
+      "activeUsers": 120,
+      "engagementTimeSeconds": 560
+    },
+    {
+      "sourceMedium": "google / organic",
+      "period": "current",
+      "sessions": 180,
+      "activeUsers": 180,
+      "engagementTimeSeconds": 840
+    }
+  ]
+}

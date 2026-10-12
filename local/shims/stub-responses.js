@@ -19,6 +19,16 @@ function expectedSummary() {
   return loadDummyResponse('expectedSummary.json');
 }
 
+/** Return a numbered monthly GA4 fixture for local report tests. */
+function monthlyOverviewScenario(number) {
+  return loadDummyResponse('monthly-overview' + number + '.json');
+}
+
+/** Return a numbered expected report fixture for local report tests. */
+function expectedSummaryScenario(number) {
+  return loadDummyResponse('expectedSummary' + number + '.json');
+}
+
 /** Return the metrics-by-page GA4 fixture for a single report. */
 function ga4RunReport() {
   return loadDummyResponse('metrics-by-page.json');
@@ -57,4 +67,6 @@ module.exports = {
   ga4BatchRunReports,
   geminiGenerateContent,
   expectedSummary,
+  monthlyOverviewScenario,
+  expectedSummaryScenario,
 };

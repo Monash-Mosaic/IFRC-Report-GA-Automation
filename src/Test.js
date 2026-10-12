@@ -143,7 +143,7 @@ function testGA4() {
     const requests = buildGA4Request();
 
     // The request should have the expected shape for the GA4 report.
-    assertEqual(requests.length, 4, 'GA4 should request four reports');
+    assertEqual(requests.length, 5, 'GA4 should request five reports');
     assertEqual(
         requests[0].dimensions[0].name,
         'pageTitle',
@@ -166,7 +166,7 @@ function testGA4() {
     );
 
     const response = fetchGA4Metrics({ propertyId: '123456789' });
-    assertEqual(response.reports.length, 4, 'GA4 batch should contain four reports');
+    assertEqual(response.reports.length, 5, 'GA4 batch should contain five reports');
     assertEqual(
         response.reports[0].rows.length,
         14,
@@ -211,14 +211,25 @@ function testGA4() {
 
 /** Test the readable report against the expected local fixture. */
 function testReport() {
-    const summary = summarizeMetrics(
-        fetchGA4Metrics({ propertyId: '123456789' })
-    );
     assertEqual(
-        JSON.stringify(summary),
+        JSON.stringify(
+            summarizeMetrics(fetchGA4Metrics({ propertyId: '123456789' }))
+        ),
         JSON.stringify(expectedSummary()),
         'Readable report should match expected summary fixture'
     );
+
+    [1, 2, 3, 4, 5].forEach(function(scenario) {
+        assertEqual(
+            JSON.stringify(
+                summarizeMetrics(monthlyOverviewScenario(scenario))
+            ),
+            JSON.stringify(expectedSummaryScenario(scenario)),
+            'Readable report should match scenario ' + scenario +
+                ' expected summary fixture'
+        );
+    });
+    
     assertThrows(
         function() {
             summarizeMetrics(null);
@@ -230,7 +241,7 @@ function testReport() {
         function() {
             summarizeMetrics({ reports: [] });
         },
-        'GA4 report data must contain four reports',
+        'GA4 report data must contain five reports',
         'An incomplete batch should fail'
     );
 
