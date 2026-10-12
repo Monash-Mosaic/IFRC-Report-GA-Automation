@@ -7,7 +7,7 @@ function buildGA4Request() {
     { name: 'previous', startDate: '56daysAgo', endDate: '29daysAgo' },
   ];
   return [
-    // Metrics by Page Title
+    // Performance by Page Title
     {
       dateRanges,
       dimensions: [{ name: 'pageTitle' }],
@@ -21,7 +21,7 @@ function buildGA4Request() {
       orderBys: [{ metric: { metricName: 'screenPageViews' }, desc: true }],
       limit: 100,
     },
-    // Metrics by Country
+    // Performance by Country
     {
       dateRanges,
       dimensions: [{ name: 'country' }],
@@ -53,6 +53,18 @@ function buildGA4Request() {
       orderBys: [{ metric: { metricName: 'eventCount' }, desc: true }],
       limit: 100,
     },
+    // Traffic Sources
+    {
+      dateRanges,
+      dimensions: [{ name: 'sessionSourceMedium' }],
+      metrics: [
+        { name: 'sessions' },
+        { name: 'activeUsers' },
+        { name: 'userEngagementDuration' },
+      ],
+      orderBys: [{ metric: { metricName: 'sessions' }, desc: true }],
+      limit: 100,
+    }
   ];
 }
 

@@ -457,13 +457,34 @@
           ],
           "metricValues": [
             {
-              "value": "21"
+              "value": "15"
             },
+            {
+              "value": "5"
+            },
+            {
+              "value": "90"
+            }
+          ]
+        },
+        {
+          "dimensionValues": [
+            {
+              "value": "New Zealand"
+            },
+            {
+              "value": "previous"
+            }
+          ],
+          "metricValues": [
             {
               "value": "6"
             },
             {
-              "value": "128"
+              "value": "1"
+            },
+            {
+              "value": "38"
             }
           ]
         },
@@ -478,18 +499,39 @@
           ],
           "metricValues": [
             {
-              "value": "4"
+              "value": "3"
             },
             {
               "value": "1"
             },
             {
-              "value": "14"
+              "value": "10"
+            }
+          ]
+        },
+        {
+          "dimensionValues": [
+            {
+              "value": "New Zealand"
+            },
+            {
+              "value": "current"
+            }
+          ],
+          "metricValues": [
+            {
+              "value": "1"
+            },
+            {
+              "value": "0"
+            },
+            {
+              "value": "4"
             }
           ]
         }
       ],
-      "rowCount": 1,
+      "rowCount": 4,
       "metadata": {
         "currencyCode": "AUD",
         "timeZone": "Australia/Melbourne"
@@ -658,6 +700,122 @@
         }
       ],
       "rowCount": 2,
+      "metadata": {
+        "currencyCode": "AUD",
+        "timeZone": "Australia/Melbourne"
+      },
+      "kind": "analyticsData#runReport"
+    },
+    {
+      "dimensionHeaders": [
+        {
+          "name": "sessionSourceMedium"
+        },
+        {
+          "name": "dateRange"
+        }
+      ],
+      "metricHeaders": [
+        {
+          "name": "sessions",
+          "type": "TYPE_INTEGER"
+        },
+        {
+          "name": "activeUsers",
+          "type": "TYPE_INTEGER"
+        },
+        {
+          "name": "userEngagementDuration",
+          "type": "TYPE_SECONDS"
+        }
+      ],
+      "rows": [
+        {
+          "dimensionValues": [
+            {
+              "value": "(direct) / (none)"
+            },
+            {
+              "value": "previous"
+            }
+          ],
+          "metricValues": [
+            {
+              "value": "3"
+            },
+            {
+              "value": "3"
+            },
+            {
+              "value": "48"
+            }
+          ]
+        },
+        {
+          "dimensionValues": [
+            {
+              "value": "google / organic"
+            },
+            {
+              "value": "previous"
+            }
+          ],
+          "metricValues": [
+            {
+              "value": "4"
+            },
+            {
+              "value": "3"
+            },
+            {
+              "value": "80"
+            }
+          ]
+        },
+        {
+          "dimensionValues": [
+            {
+              "value": "(direct) / (none)"
+            },
+            {
+              "value": "current"
+            }
+          ],
+          "metricValues": [
+            {
+              "value": "0"
+            },
+            {
+              "value": "0"
+            },
+            {
+              "value": "0"
+            }
+          ]
+        },
+        {
+          "dimensionValues": [
+            {
+              "value": "google / organic"
+            },
+            {
+              "value": "current"
+            }
+          ],
+          "metricValues": [
+            {
+              "value": "1"
+            },
+            {
+              "value": "1"
+            },
+            {
+              "value": "14"
+            }
+          ]
+        }
+      ],
+      "rowCount": 4,
       "metadata": {
         "currencyCode": "AUD",
         "timeZone": "Australia/Melbourne"

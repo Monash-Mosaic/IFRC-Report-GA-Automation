@@ -54,6 +54,17 @@ function summarizeMetrics(response) {
       'fileName',
       ['eventCount'],
       { fileName: 'fileName', eventCount: 'downloadCount' }
+    ),
+    trafficSources: mapReport(
+      reports[4],
+      'sessionSourceMedium',
+      ['sessions', 'activeUsers', 'userEngagementDuration'],
+      {
+        sessionSourceMedium: 'sourceMedium',
+        sessions: 'sessions',
+        activeUsers: 'activeUsers',
+        userEngagementDuration: 'engagementTimeSeconds'
+      }
     )
   };
 
@@ -61,15 +72,15 @@ function summarizeMetrics(response) {
 }
 
 /**
- * Validate the expected four-report GA4 batch response.
+ * Validate the expected five-report GA4 batch response.
  */
 function validateGA4ReportData(response) {
   if (!response || !Array.isArray(response.reports)) {
     throw new Error('GA4 report data must contain a reports array');
   }
 
-  if (response.reports.length !== 4) {
-    throw new Error('GA4 report data must contain four reports');
+  if (response.reports.length !== 5) {
+    throw new Error('GA4 report data must contain five reports');
   }
 
   response.reports.forEach(function(report, index) {

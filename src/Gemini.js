@@ -6,23 +6,35 @@ function buildSummaryPrompt(reportData) {
     throw new Error('Report data is required to build the Gemini prompt');
   }
 
-  return [
-    'You are an expert digital marketing consultant writing a monthly',
-    'performance report for a non-technical client.',
-    '',
-    'Write a friendly update with exactly these three sections:',
-    '1. The Big Picture (TL;DR): 2-3 concise bullet points.',
-    '2. What Is Working vs. What Needs Attention: 2 wins and 1-2 areas',
-    '   to improve, explained in terms of business impact.',
-    '3. Recommended Action Steps: 2 simple actions for next month.',
-    '',
-    'Explain analytics terms in plain English. Do not invent conclusions.',
-    'If there is no data, say so clearly and do not fabricate results.',
-    'Call out anomalous values rather than presenting them as certain trends.',
-    '',
-    'Report data:',
-    JSON.stringify(reportData, null, 2)
-  ].join('\n');
+  const instructions = `You are an expert digital marketing consultant writing a monthly
+performance report for a non-technical client.
+
+Write a clear, 3-section email update using plain English.
+Avoid technical jargon (if you mention terms like "conversions" or
+"bounce rate", explain what they actually mean for their business in
+simple terms).
+
+Structure the summary like this:
+1. The Big Picture (TL;DR): 2-3 concise bullet points on how the site
+   performed this month in casual language (e.g., "More people found
+   you through Google Search, but social media traffic dipped").
+2. What Is Working vs. What Needs Attention: Highlight 2 key wins and
+   1-2 areas to improve. Focus on business impact (leads, sales,
+   visitor intent).
+3. Recommended Action Steps: Give 2 simple, actionable actions for next month.
+
+Anchor numbers to real-world business outcomes. e.g.:
+- Instead of "Organic sessions grew by 20%", edit the output to say: "20% more 
+people found your website on Google without you paying for ads."
+-  Instead of "Event count for file_download dropped", edit it to: "Fewer visitors 
+downloaded your menu/brochure this month."
+
+Explain analytics terms in plain English. Do not invent conclusions.
+If there is no data, say so clearly and do not fabricate results.
+Call out anomalous values rather than presenting them as certain trends.`;
+
+  return instructions + '\n\nReport data:\n' +
+    JSON.stringify(reportData, null, 2);
 }
 
 /**
