@@ -33,7 +33,7 @@ Explain analytics terms in plain English. Do not invent conclusions.
 If there is no data, say so clearly and do not fabricate results.
 Call out anomalous values rather than presenting them as certain trends.`;
 
-  return instructions + '\n\nReport data:\n' +
+  return instructions + '\n\nHere is the Report data for this month, and the previous month:\n' +
     JSON.stringify(reportData, null, 2);
 }
 
@@ -66,7 +66,7 @@ function callGemini(prompt, config) {
   const request = buildGeminiRequest(prompt);
   const url =
     'https://generativelanguage.googleapis.com/v1beta/models/' +
-    'gemini-1.5-flash:generateContent';
+    'gemini-3.5-flash-lite:generateContent';
   const response = UrlFetchApp.fetch(url, {
     method: 'post',
     contentType: 'application/json',
